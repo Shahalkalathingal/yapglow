@@ -1,0 +1,340 @@
+{{!-- <br>
+<div class="container">
+    <h1 class="title" style="color: white;">Profile Page</h1>
+    <a href="/account/logout">Logout</a>
+</div>
+
+<div class="columns">
+    <div class="container profile">
+        <div class="modal" id="edit-preferences-modal">
+            <div class="modal-background">
+                <div class="modal-card">
+                    <div class="modal-card-head"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+
+<style>
+    body {
+        background: #F5F7FA
+    }
+
+    .stat-val {
+        font-size: 3em;
+        padding-top: 20px;
+        font-weight: bold;
+    }
+
+    .stat-key {
+        font-size: 1.4em;
+        font-weight: 200
+    }
+
+    .section.profile-heading .column.is-2-tablet.has-text-centered+.has-text-centered {
+        border-left: 1px dotted rgba(0, 0, 0, .2);
+    }
+
+    .container.profile {
+        margin-top: 1%;
+    }
+
+    .control.is-pulled-left span.select {
+        margin-right: 5px;
+        border-radius: 2px;
+    }
+
+    .modal-card .content h1 {
+        padding: 40px 10px 10px;
+        border-bottom: 1px solid #dadada
+    }
+
+    .container.profile .profile-options .tabs ul li.link a {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #F1F1F1;
+    }
+</style>
+
+<div class="columns">
+    <div class="container profile p-2">
+        {{!-- Edit Preferences Modal Start --}}
+        <style>
+            .header-text {
+                background-color: rgba(176, 176, 176, 0.7);
+            }
+
+            .the-header {
+                position: relative;
+                padding: 100px 20px;
+            }
+
+            .header-background {
+                position: absolute;
+                width: 100%;
+                object-fit: cover;
+                z-index: -100;
+                bottom: 0;
+                left: 0;
+                right: 0;
+            }
+
+            .profile-picture {
+                border-radius: 50%;
+                height: 175px;
+                width: 175px;
+            }
+
+
+
+            @media only screen and (max-width: 768px) {
+
+                /* For mobile phones: */
+                .profile-picture {
+                    border-radius: 50%;
+                    height: 335px;
+                    width: 335px;
+                }
+            }
+
+            @media only screen and (max-width: 1215px) and (min-width: 720px) {
+
+                .profile-picture {
+                    border-radius: 50%;
+                    height: 110px;
+                    width: 110px;
+                }
+
+
+            }
+        </style>
+        <div class="section profile-heading">
+            <div class="columns  is-mobile is-multiline">
+
+
+                <div class="column mt-5 is-4-tablet is-10-mobile name">
+                    <p>
+                        <span class="mt-2">
+                            <span class=" title is-italic  has-text-weight-bold	 	">{{userDetails.username}}</span>
+                            <div class="mt-1">
+
+                                <span class="subtitle is-italic has-text-weight-light">{{userDetails.category}}</span>
+                            </div>
+                        </span>
+                        <br>
+                        <style>
+                            @media screen and (max-width: 768px),
+                            print {
+                                .button.is-fullwidth-mobile {
+                                    display: flex;
+                                    width: 100%;
+                                }
+                            }
+                        </style>
+                    <p class=" tagline">
+                        {{userDetails.bio}}
+                    </p>
+                    <a class="mt-2 button is-link is-outlined" href="/account/edit-profile" id="edit-preferences"
+                        style="margin: 5px 0">
+                        Edit Profile
+                    </a>
+
+                    </p>
+
+                </div>
+                <div class="column is-size-7-mobile	 is-2-tablet is-4-mobile has-text-centered">
+                    <p class=" stat-val  has-text-weight-normal	">${{userDetails.earnings}}</p>
+                    <p class="stat-key">Earnings</p>
+                </div>
+                <div class="column is-size-7-mobile	 is-2-tablet is-4-mobile has-text-centered">
+                    <p class="stat-val has-text-weight-normal	">{{userDetails.loved.length}}</p>
+                    <p class="stat-key">Likes</p>
+                </div>
+                <div class="column is-size-7-mobile	 is-2-tablet is-4-mobile has-text-centered">
+                    <p class="stat-val has-text-weight-normal	">{{userDetails.favorites.length}}</p>
+                    <p class="stat-key">favorites</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="profile-options is-fullwidth ">
+
+            <div class="tabs is-fullwidth ">
+                <ul>
+
+                    <li class="link tab is-active" id="favorites-button" onclick="openTab(event,'favorites')">
+                        <a>
+                            <span class="icon">
+                                <i class="fa fa-thumbs-up"></i>
+                            </span>
+                            <span>My Favorites</span>
+                        </a>
+                    </li>
+
+                    <li class="link tab" id="settings-button" onclick="openTab(event,'settings')">
+                        <a>
+                            <span class="icon">
+                                <i class="fa fa-cog"></i>
+                            </span>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-tab" id="favorites">
+            {{#if userDetails.favorites}}
+            <div class="columns p-3 is-6-mobile is-multiline ">
+
+                {{#each userDetails.favorites}}
+                <div class="column is-3">
+                    <div class="card">
+                        <header class="card-header">
+                            <p class="card-header-title">
+                                {{this.username}}
+                            </p>
+
+                        </header>
+
+                        <footer class="card-footer">
+
+                            <a href="/favorites/remove/{{this._id}}" class="card-footer-item">Remove </a>
+                        </footer>
+                    </div>
+                    <br>
+                </div>
+                {{/each}}
+
+
+            </div>
+            <section>
+                <div class="container">
+                    {{#if lives}}
+                    <div class="notification is-link">
+                        FAVORITE LIVES :-
+                    </div>
+                    <br>
+                    <div class="columns  is-6 is-variable is-multiline">
+                        {{#each lives}}
+                        <div class="column m-3  is-half-tablet is-one-third-desktop ">
+                            <a href="{{this.link}}">
+                                <div class="card">
+                                    <div class="card-image">
+                                        <figure class="image is-4by3">
+                                            {{#if this.thumbnail}}
+                                            <img src="{{this.thumbnail}}" alt="Placeholder image">
+                                            {{else}}
+                                            <img src="/images/logo.png" alt="Placeholder image">
+
+                                            {{/if}}
+                                        </figure>
+                                    </div>
+                                    <div class="card-content is-overlay">
+                                        <span class="tag is-primary">{{this.username}}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {{/each}}
+
+
+
+                    </div>
+                   
+
+
+
+                 {{else}}
+                    <div class="notification is-danger">
+                        No Favorites Lives !
+                    </div>
+                    {{/if}}
+                </div>
+            </section>
+            {{else}}
+
+            <article class="message is-warning">
+                <div class="message-header">
+                    <p>No Favorites</p>
+                    {{!-- <button class="delete" aria-label="delete"></button> --}}
+                </div>
+                <div class="message-body">
+                    Your favorites will show up here!
+                </div>
+            </article>
+            <br>
+
+            {{/if}}
+        </div>
+
+        <div id="settings" class="content-tab m-3" style="display:none ;">
+
+
+
+
+            <h3 class="title">
+                Payment Options
+            </h3>
+            {{!-- do later --}}
+            <div class="tags has-addons">
+                <span class="tag is-dark">Bulma</span>
+                <span class="tag is-primary">0.5.1</span>
+            </div>
+
+            <h3 class="title">
+                Tags
+            </h3>
+            <div class="tags has-addons">
+                <span class="tag is-dark">yapglow</span>
+                <span class="tag is-primary">.com</span>
+            </div>
+
+
+
+
+            <div class="is-hidden-mobile">
+                <a href="/account/logout" style="width: 20vh;"
+                    class="is-pulled-right button is-danger is-outlined ">Logout</a>
+
+            </div>
+            <div class=" is-hidden-desktop is-hidden-tablet is-hidden-widescreen">
+
+                <a href="/account/logout" class=" button is-danger is-outlined is-fullwidth">Logout</a>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        settingsDiv = document.getElementById('settings')
+        favoritesDiv = document.getElementById('favorites')
+
+        settingsBtn = document.getElementById('settings-button')
+
+        favoritesBtn = document.getElementById('favorites-button')
+
+        if (tabName === 'settings') {
+            evt.currentTarget.className = "link tab is-active"
+            favoritesBtn.className = "link tab"
+            favoritesDiv.style.display = "none"
+            settingsDiv.style.display = "inherit"
+        } else if (tabName === 'favorites') {
+            evt.currentTarget.className = "link tab is-active"
+            settingsBtn.className = "link tab"
+            settingsDiv.style.display = "none"
+            favoritesDiv.style.display = "inherit"
+        }
+
+
+    }
+
+</script>

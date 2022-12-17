@@ -1,0 +1,138 @@
+{{!-- <div class="notification " style="background:linear-gradient(rgb(251, 225, 18) 0%, rgb(204, 125, 0) 100%);">
+    Only agree if you are<strong>18+ or older</strong>
+    Allow cookies to be stored on this device
+</div> --}}
+
+<div class="section ">
+    <div class="container">
+        {{#if category}}
+
+<h1 class="title is-uppercase	is-italic 	" style="color: white;font-size: 20px;">Category "{{cateGory}}" ...</h1>
+        <br>
+        {{/if}}
+    </div>
+    <div class="container">
+{{#if lives}}
+        <div class="columns  is-6 is-variable is-multiline" id="paginated-list" aria-live="polite">
+{{#each lives}}
+            <div   class="column lives-list   is-half-tablet is-one-third-desktop ">
+<a href="{{this.link}}">
+                <div class="card">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            {{#if this.thumbnail}}
+                            <img src="{{this.thumbnail}}" alt="Placeholder image">
+                        {{else}}
+                            <img src="/images/logo.png" alt="Placeholder image">
+{{/if}}
+                        </figure>
+                    </div>
+                    <div class="card-content is-overlay">
+                        <span class="tag is-primary">{{this.username}}</span>
+                    </div>
+                </div>
+</a>
+            </div>
+            {{/each}}
+         
+             
+              
+        </div>
+{{else}}
+          <article class="message is-link">
+  <div class="message-header">
+    <p>404 Not Found</p>
+    {{!-- <button class="delete" aria-label="delete"></button> --}}
+  </div>
+  
+  {{#if category}}
+  <div class="message-body">
+    No Lives on this category</b>
+  </div>
+  {{else}}
+<div class="message-body">
+    No one is currently on live, Start your own <b><a style="" href="/golive">live</a> </b>
+  </div>
+  {{/if}}
+</article>
+ 
+           
+        {{/if}}  
+        {{#if livesLength}}    
+
+<nav class="pagination is-rounded" role="navigation" aria-label="pagination">
+  <button id="prev-button" title="Previous page" aria-label="Previous page" class="pagination-previous " style="background-color: whitesmoke ;" title="This is the first page">Previous</button>
+  <button id="next-button" title="Next page" aria-label="Next page" class="pagination-next" style="background-color: whitesmoke ;">Next page</button>
+</nav>
+<script>
+    window.addEventListener("load", () => {
+  setCurrentPage(1);
+
+  prevButton.addEventListener("click", () => {
+    setCurrentPage(currentPage - 1);
+  });
+ 
+  nextButton.addEventListener("click", () => {
+    setCurrentPage(currentPage + 1);
+  });
+});
+
+const paginatedList = document.getElementById("paginated-list");
+const listItems = paginatedList.querySelectorAll(".lives-list");
+const nextButton = document.getElementById("next-button");
+const prevButton = document.getElementById("prev-button");
+
+const paginationLimit = 6
+const pageCount = Math.ceil(listItems.length / paginationLimit);
+let currentPage;
+
+
+const setCurrentPage = (pageNum) => {
+  currentPage = pageNum;
+
+  handlePageButtonsStatus();
+    const prevRange = (pageNum - 1) * paginationLimit;
+  const currRange = pageNum * paginationLimit;
+
+  listItems.forEach((item, index) => {
+    item.classList.add("is-hidden");
+    if (index >= prevRange && index < currRange) {
+      item.classList.remove("is-hidden");
+    }
+  });
+};
+
+const disableButton = (button) => {
+  button.classList.add("disabled");
+  button.setAttribute("disabled", true);
+};
+ 
+const enableButton = (button) => {
+  button.classList.remove("disabled");
+  button.removeAttribute("disabled");
+};
+ 
+const handlePageButtonsStatus = () => {
+  if (currentPage === 1) {
+    disableButton(prevButton);
+  } else {
+    enableButton(prevButton);
+  }
+ 
+  if (pageCount === currentPage) {
+    disableButton(nextButton);
+  } else {
+    enableButton(nextButton);
+  }
+};
+
+console.log(listItems)
+
+
+</script>
+{{/if}}
+    </div>
+    
+</div>
+
+

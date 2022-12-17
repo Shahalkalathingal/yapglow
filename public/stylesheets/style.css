@@ -1,0 +1,8 @@
+
+body{
+  min-height: 107vh;
+  display: flex;
+  background-color: #212121;
+  flex-direction: column;
+  font-family: 'Roboto Mono', monospace;
+}

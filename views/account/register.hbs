@@ -1,0 +1,104 @@
+<br>
+<section>
+
+<div class="notification " style="background:linear-gradient(rgb(251, 225, 18) 0%, rgb(204, 125, 0) 100%);">
+    Register your Account, If you already have an Account then <strong ><a style="color: rgb(66, 66, 141);text-decoration: none;" href="/account/login">Login</a></strong> 
+</div>
+<br>
+
+    <div class="container">
+     
+      <div class="notification" style="background-color: ;">
+    {{#if msg}}
+<div class="notification is-danger">
+{{msg}} !
+</div>
+{{/if}}
+   <form action="/account/register" method="post">      
+         
+         <div class="field">
+  <label class="label">Name</label>
+  <div class="control">
+    <input name="name" class="input" type="text" placeholder="Your Full Name" value="{{value.name}}">
+  </div>
+</div>
+
+<div class="field">
+  <label class="label">Username</label>
+  <div class="control has-icons-left has-icons-right">
+    <input name="username" class="input " type="text" placeholder="New Username" value="{{value.username}}">
+    <span class="icon is-small is-left">
+      <i class="fas fa-user"></i>
+    </span>
+ 
+  </div>
+  
+</div>
+
+<div class="field">
+  <label class="label">Email</label>
+  <div class="control has-icons-left has-icons-right">
+    <input name="email" class="input " type="email" placeholder="Your email" value="{{value.email}}">
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+  
+  </div>
+ 
+</div>
+
+<div class="field">
+    <label class="label">Password</label>
+  <p class="control has-icons-left">
+    <input name="password" class="input" type="password" placeholder="New Password" value="{{value.password}}">
+    <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </p>
+</div>
+
+<div class="field">
+  <p class="control has-icons-left">
+    <input name="con_password" class="input" type="password" placeholder="Confirm Password" value="{{value.con_password}}">
+    <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </p>
+</div>
+
+
+
+
+
+<div class="field">
+  <div class="control">
+    <label class="checkbox">
+      <input name="terms" type="checkbox" >
+      I agree to the <a href="/terms">terms and conditions</a>
+    </label>
+  </div>
+</div>
+
+
+
+<div class="field is-grouped">
+  <div class="control">
+    <button type="submit" class="button is-link">Register</button>
+  </div>
+ 
+</div>
+
+
+
+
+
+
+</form>
+
+
+
+      </div>
+    </div>
+</section>
+
+<br><br>

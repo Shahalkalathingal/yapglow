@@ -1,0 +1,177 @@
+<section>
+
+    <div class="notification is-link">
+        Edit Your Profile as your Preferences !
+    </div>
+    
+
+    <div class="container">
+
+        <div class="notification" style="background-color: ;">
+            {{#if msg}}
+            <div class="notification is-danger">
+                {{msg}} !
+            </div>
+            {{/if}}
+            <form action="/account/edit-profile" method="post">
+
+                <div class="field">
+                    <label class="label">Name <span style="color: red;">*</span></label>
+                    <div class="control">
+                        <input name="name" class="input" placeholder="Your Name" type="text"
+                            value="{{userDetails.name}}">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label">Username <span style="color: red;">*</span></label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input name="username" class="input" placeholder="Your Username" type="text"
+                            value="{{userDetails.username}}">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                </div>
+
+
+
+                <div class="field">
+                        <label class="label">Email </label>
+                        <p class="control has-icons-left has-icons-right">
+                            <input disabled   class="input" placeholder="Your Email" type="text" value="{{userDetails.email}}">
+    <input hidden   name="email"  type="text" value="{{userDetails.email}}">
+
+<span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+
+                        </p>
+                    </div>
+
+
+                    <label class="label">Bio</label>
+                    <p class="control">
+                        <textarea name="bio" class="textarea" placeholder="Describe Yourself!">{{userDetails.bio}}</textarea>
+                    </p>
+                    <br>
+
+                     <div class="field">
+                        <label class="label">Thumbnail Image</label>
+                        <p class="control has-icon has-icon-right">
+                            <input name="image" class="input" placeholder="Image Url" type="text" value="{{userDetails.image}}">
+
+
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <label class="label">Your Live Category</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="category">
+                                    {{#if category.vloging}}
+                                    <option value="none">Select Category</option>
+                                    <option selected value="vlogging/gaming">Vlogging / Gaming</option>
+                                    <option value="music/live">Music / Live</option>
+                                    <option value="hangout/dating">Hangout / Dating</option>
+                                    <option value="concert/festival">Concert / Festival</option>
+                                    <option value="lgbt">LGBT</option>
+                                    {{/if}}
+                                    {{#if category.music}}
+                                    <option value="none">Select Category</option>
+                                    <option value="vlogging/gaming">Vlogging / Gaming</option>
+                                    <option selected  value="music/live">Music / Live</option>
+                                    <option value="hangout/dating">Hangout / Dating</option>
+                                    <option value="concert/festival">Concert / Festival</option>
+                                    <option value="lgbt">LGBT</option>
+                                    {{/if}}
+                                    {{#if category.hangout}}
+                                    <option value="none">Select Category</option>
+                                    <option value="vlogging/gaming">Vlogging / Gaming</option>
+                                    <option value="music/live">Music / Live</option>
+                                    <option selected value="hangout/dating">Hangout / Dating</option>
+                                    <option value="concert/festival">Concert / Festival</option>
+                                    <option value="lgbt">LGBT</option>
+                                    {{/if}}
+                                    {{#if category.concert}}
+                                    <option value="none">Select Category</option>
+                                    <option value="vlogging/gaming">Vlogging / Gaming</option>
+                                    <option value="music/live">Music / Live</option>
+                                    <option value="hangout/dating">Hangout / Dating</option>
+                                    <option selected value="concert/festival">Concert / Festival</option>
+                                    <option value="lgbt">LGBT</option>
+                                    {{/if}}
+                                    {{#if category.lgbt}}
+                                    <option value="none">Select Category</option>
+                                    <option value="vlogging/gaming">Vlogging / Gaming</option>
+                                    <option value="music/live">Music / Live</option>
+                                    <option value="hangout/dating">Hangout / Dating</option>
+                                    <option value="concert/festival">Concert / Festival</option>
+                                    <option selected value="lgbt">LGBT</option>
+                                    {{/if}}
+                                     {{#if category.none}}
+                                    <option selected value="none">Select Category</option>
+                                    <option value="vlogging/gaming">Vlogging / Gaming</option>
+                                    <option value="music/live">Music / Live</option>
+                                    <option value="hangout/dating">Hangout / Dating</option>
+                                    <option value="concert/festival">Concert / Festival</option>
+                                    <option  value="lgbt">LGBT</option>
+                                    {{/if}}
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="field">
+                        <label class="label">Password</label>
+                        <p class="control has-icons-left">
+                            <input name="old_password" class="input" type="password"  placeholder="Old Password"
+                                value="{{userDetails.old_password}}">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            <input name="new_password" class="input" type="password" placeholder="New Password"
+                                value="{{userDetails.new_password}}">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+
+                
+
+
+
+
+
+               
+
+
+
+                <div class="field is-grouped">
+                    <div class="control">
+                        <button type="submit" class="button is-link">Save Profile</button>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </form>
+
+
+
+        </div>
+    </div>
+</section>
+<br><br><br>

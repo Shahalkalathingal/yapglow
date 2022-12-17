@@ -1,0 +1,63 @@
+<br>
+<section>
+
+<div class="notification " style="background:linear-gradient(rgb(251, 225, 18) 0%, rgb(204, 125, 0) 100%);">
+    Login to your Account or If you don't have a Free Account then <strong ><a style="color: rgb(66, 66, 141);text-decoration: none;" href="/account/register">Signup</a></strong> now
+</div>
+
+    <div class="container">
+      <form action="/account/login" method="post">
+      <div class="notification" style="background-color: ;">
+        {{#if msg}}
+<div class="notification is-danger">
+{{msg}} !
+</div>
+{{/if}}
+         <div class="field">
+  <p class="control has-icons-left has-icons-right">
+    <input class="input" type="email" placeholder="Email" name="email" value="{{value.email}}">
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+
+  </p>
+</div>
+<div class="field">
+  <p class="control has-icons-left">
+    <input class="input" type="password" placeholder="Password" name="password" value="{{value.password}}">
+    <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+  </p>
+</div>
+{{!-- <div class="field">
+  <div class="control">
+    <label class="checkbox">
+      <input type="checkbox">
+      I agree to the <a href="#">terms and conditions</a>
+    </label>
+  </div>
+</div> --}}
+<div class="field">
+  <p class="control">
+    <button class="button is-info">
+      Login
+    </button>
+  </p>
+</div>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      </form>
+    </div>
+</section>
+
+<br><br>
