@@ -214,7 +214,7 @@ try {
 
 router.post('/account/register',isNotLoggedIn, async function (req, res, next) {
   const { name, username, email, password, con_password, terms } = req.body;
-  console.log(req.body);
+  
   try {
     if (!email || !name || !username || !con_password || !password ) {
       return res.render('account/register', { title: 'Register | YAPGLOW', msg: "Please add all fields" ,value:req.body})
@@ -507,6 +507,7 @@ let  livesLength = false
  
  if(req.session.isLoggedIn){
    if(!response.data.live || !response.data || response.data === {}){
+
      return res.render('index', { title: 'Category | YAPGLOW' ,user:true,category:true});
     }
 
@@ -539,16 +540,17 @@ let  livesLength = false
    let category = ""
 lives = await Promise.all(allLives.filter((live)=>{
   if(live.none != true){
-    
-       live.category = live.category.split("/").shift()
-       let paramsId = req.params.id.split("-").shift()
-       if(live.category === paramsId){
-        return live
-       }
+    if(live.category){
+      live.category = live.category.split("/").shift()
+      let paramsId = req.params.id.split("-").shift()
+      if(live.category === paramsId){
+       return live
+      }
+    }
+      
     
   }
 }))
-   
   
     
     if(lives.length > 6){

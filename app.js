@@ -79,13 +79,13 @@ ws.on("connection",(socket)=>{
     console.log('FFmpeg child process closed');
   });
   
-  ffmpeg.stdin.on('error', (e) => {
-    console.log('FFmpeg STDIN Error', e);
-  });
+  // ffmpeg.stdin.on('error', (e) => {
+  //   console.log('FFmpeg STDIN Error', e);
+  // });
   
-  ffmpeg.stderr.on('data', (data) => {
-    console.log(`FFmpeg STDERR: ${_id}`, data.toString());
-  });
+  // ffmpeg.stderr.on('data', (data) => {
+  //   console.log(`FFmpeg STDERR: ${_id}`, data.toString());
+  // });
    
   socket.on('message', async(data) => {
     // console.log("got tracks");
@@ -108,6 +108,10 @@ ws.on("connection",(socket)=>{
     socket.terminate()
    socket.close()
    });
+
+  socket.on('error',async(err)=>{
+    console.log("errorr............................");
+  })
 })
 
 

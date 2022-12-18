@@ -961,14 +961,14 @@ likeButton.removeChild(likeButton.children[0])
         videoElement.autoplay = true;
         micButton.removeChild(micButton.children[0])
         micButton.innerHTML = '<i style="font-size: 20px;" class="fa-sharp fa-solid fa-volume-high"></i>'
-        console.log(micButton.children)
+   
         micStatus = false
       } else {
         videoElement.muted = false;
         videoElement.autoplay = true;
         micButton.removeChild(micButton.children[0])
         micButton.innerHTML = '<i style="font-size: 20px;" class="fa-duotone fa-solid fa-volume-xmark"></i>'
-        console.log(micButton.children)
+      
         micStatus = true
       }
     })

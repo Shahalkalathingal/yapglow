@@ -938,7 +938,7 @@ let text = chatInput1.value
 
 
    const getVideo = (e) => {
-	console.log(stopButton)
+	
 	document.getElementById('live-button').remove()
 	stopButton.removeAttribute('hidden')
 	stopButton.classList.remove('is-hidden')
@@ -958,7 +958,7 @@ let text = chatInput1.value
 
     mediaRecorder.start(250);
 	mediaRecorder.ondataavailable = function(e) {
-		console.log(mediaRecorder.videoBitsPerSecond,mediaRecorder.audioBitsPerSecond,mediaRecorder.mimeType,mediaRecorder.state)
+
 		if(isOn){
 			stopButton.addEventListener('click',(e)=>{
 				isOn = false
